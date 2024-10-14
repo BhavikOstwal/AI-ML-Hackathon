@@ -1,18 +1,12 @@
-# input_processing.py
-
 from transformers import BlipProcessor, BlipForConditionalGeneration, CLIPProcessor, CLIPModel
 from PIL import Image
 import torch
 from urllib.parse import quote_plus
+import spacy
 
 # Step 1: Load BLIP model for image captioning
 blip_processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
 blip_model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
-
-# Step 2: Load CLIP model for multimodal embeddings (Optional, can be removed if not needed for embedding)
-clip_model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
-clip_processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
-clip_model.eval()  # Set CLIP model to evaluation mode
 
 # Step 3: Function to generate image caption using BLIP
 def generate_caption(image_path):
@@ -27,14 +21,28 @@ def combine_query(user_prompt, image_caption):
     combined_query = f"{user_prompt}. The image shows {image_caption}."
     return combined_query
 
-# Step 5: (Optional) Generate image embedding using CLIP - in case you want to use embeddings
-def generate_image_embedding(image_path):
-    image = Image.open(image_path)
-    inputs = clip_processor(images=image, return_tensors="pt")
-    with torch.no_grad():
-        image_embedding = clip_model.get_image_features(**inputs)
-    image_embedding = torch.nn.functional.normalize(image_embedding, p=2, dim=-1)  # Normalize embedding
-    return image_embedding
+
+
+# Load spaCy English model
+nlp = spacy.load("en_core_web_sm")
+def blend_query_spacy(user_query, blip_caption):
+    vague_words = ['similar', 'this', 'type', 'kind', 'like']
+    
+    # Parse the user query and BLIP caption
+    user_query_doc = nlp(user_query)
+    
+    # Replace vague words in the user query with BLIP details
+    new_query_tokens = []
+    for token in user_query_doc:
+        if token.text in vague_words:
+            new_query_tokens.append(blip_caption)
+        else:
+            new_query_tokens.append(token.text)
+    
+    # Combine the tokens back into a sentence
+    blended_query = " ".join(new_query_tokens)
+    return blended_query
+
 
 # Step 6: Prepare query for search API
 def prepare_query_for_search_api(combined_query):
