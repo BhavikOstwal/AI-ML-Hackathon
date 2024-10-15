@@ -1,5 +1,4 @@
 # Google Lens Pro MAX
-**I(Bhavik Ostwal) have developed a project using VLM (Visual Language Model)**
 
 ## Introduction
 Google Lens Pro MAX is an intelligent search application that leverages deep learning models to enhance search queries by combining visual inputs and text prompts. The app uses `BLIP` model for image caption generation. These models generate a contextual query, which is then passed to the `ScrapingDog API` for retrieving relevant image search results. The application is implemented in `Streamlit`, providing users with a seamless interface for submitting images and retrieving organized, grid-based image results.
@@ -23,7 +22,7 @@ Despite its current functionality, there are several areas where **Google Lens P
 ### Clone the repository using the following commands:
 ``` bash
 git clone https://github.com/BhavikOstwal/AI-ML-Hackathon.git
-cd AI-ML-Hackathon
+cd AI-ML-Hackathon/Google_Lens_PRO_MAX
 ```
 
 
@@ -49,3 +48,4 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 ### ENJOY 😎😎
+**Author -- Bhavik Ostwal**
