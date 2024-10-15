@@ -1,8 +1,8 @@
 # Google Lens Pro MAX
-**I have developed a project using VLM (Visual Language Model)**
+**I(Bhavik Ostwal) have developed a project using VLM (Visual Language Model)**
 
 ## Introduction
-Google Lens Pro MAX is an intelligent search application that leverages deep learning models to enhance search queries by combining visual inputs and text prompts. The app uses `OpenAI's CLIP ViT patch32` model for image recognition and `BLIP` model for image caption generation. These models generate a contextual query, which is then passed to the `ScrapingDog API` for retrieving relevant image search results. The application is implemented in `Streamlit`, providing users with a seamless interface for submitting images and retrieving organized, grid-based image results.
+Google Lens Pro MAX is an intelligent search application that leverages deep learning models to enhance search queries by combining visual inputs and text prompts. The app uses `BLIP` model for image caption generation. These models generate a contextual query, which is then passed to the `ScrapingDog API` for retrieving relevant image search results. The application is implemented in `Streamlit`, providing users with a seamless interface for submitting images and retrieving organized, grid-based image results.
 
 This project demonstrates how powerful open-source models and web scraping APIs can work together to provide enhanced visual search functionality, with applications spanning product search, visual discovery, and more.
 

@@ -1,4 +1,4 @@
-from transformers import BlipProcessor, BlipForConditionalGeneration, CLIPProcessor, CLIPModel
+from transformers import BlipProcessor, BlipForConditionalGeneration
 from PIL import Image
 import torch
 from urllib.parse import quote_plus
@@ -20,8 +20,6 @@ def generate_caption(image_path):
 def combine_query(user_prompt, image_caption):
     combined_query = f"{user_prompt}. The image shows {image_caption}."
     return combined_query
-
-
 
 # Load spaCy English model
 nlp = spacy.load("en_core_web_sm")
