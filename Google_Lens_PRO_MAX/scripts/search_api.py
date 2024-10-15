@@ -1,5 +1,3 @@
-# search_api.py
-
 import requests
 
 # def my_web_scraper(query):
@@ -24,7 +22,7 @@ import requests
 
 def my_web_scraper(query):
     api_key = "670b6b9cd7afc43e3ad40f4e"
-    # api_key = "670bdbdd1ad42cd59ea7b0c9"
+    # api_key = "670bdbdd1ad42cd59ea7b0c9" # another one for backup
     url = "https://api.scrapingdog.com/google_images/"
     
     params = {
